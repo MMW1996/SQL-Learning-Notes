@@ -4,9 +4,7 @@ create table str_tb1 (char_fid char(30),
 varchar_fid varchar(30),
 text_fid text);
 -- 7.1.1 生成数据串
-insert into str_tb1 values('This is char data',
-													 'This is varchar data',
-													 'This is text data');
+insert into str_tb1 values('This is char data','This is varchar data','This is text data');
 -- 7.1.2字符串超过最大长度
 #查看myslq行为模式，当前为默认模式 'strict'
 select @@session.sql_mode;
@@ -39,13 +37,13 @@ select quote(text_fid) from str_tb1; #'This string didn\'t work,but it dose now'
 -- 先重设str_tb1中的数据
 delete from str_tb1;
 insert into str_tb1 values('This string is 28 characters',
-													 'This string is 28 characters',
-													 'This string is 28 characters');
+			   'This string is 28 characters',
+    			   'This string is 28 characters');
 
 -- length() 返回字符串的字符数
 select length(char_fid) as char_length,
-			 length(varchar_fid) as varchar_length,
-			 length(text_fid) as text_length
+       length(varchar_fid) as varchar_length,
+       length(text_fid) as text_length
 from str_tb1; 
 
 -- position(substr in str) 返回子字符串在字符串中的位置
