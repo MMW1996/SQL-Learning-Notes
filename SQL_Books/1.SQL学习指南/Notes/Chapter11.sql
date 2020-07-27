@@ -40,17 +40,17 @@ group by year(open_date);
 
 select 
 	 sum(case
-				when extract(year from open_date) = 2000 then 1 else 0 end ) year_2000,
-   sum(case
-				when extract(year from open_date) = 2001 then 1 else 0 end ) year_2000,
+	     when extract(year from open_date) = 2000 then 1 else 0 end ) year_2000,
+         sum(case
+	     when extract(year from open_date) = 2001 then 1 else 0 end ) year_2000,
 	 sum(case
-				when extract(year from open_date) = 2002 then 1 else 0 end ) year_2000,
+	     when extract(year from open_date) = 2002 then 1 else 0 end ) year_2000,
 	 sum(case
-				when extract(year from open_date) = 2003 then 1 else 0 end ) year_2000,
+	     when extract(year from open_date) = 2003 then 1 else 0 end ) year_2000,
 	 sum(case
-				when extract(year from open_date) = 2004 then 1 else 0 end ) year_2000,
+	     when extract(year from open_date) = 2004 then 1 else 0 end ) year_2000,
 	 sum(case
-				when extract(year from open_date) = 2005 then 1 else 0 end ) year_2000
+	     when extract(year from open_date) = 2005 then 1 else 0 end ) year_2000
 from account 
 where open_date>'1999-12-31' and open_date<'2006-01-01' ;
 
@@ -59,21 +59,18 @@ where open_date>'1999-12-31' and open_date<'2006-01-01' ;
 -- 借款交易 乘以 -1 （DBT类型）
 select concat('ALERT! Account #', a.account_id, ' has INCORRECT balance!')
 from account a
-where (a.avail_balance, a.pending_balance) != (
-	select sum(
+where (a.avail_balance, a.pending_balance) != (select 
+    sum(
 		case 
-			when t.funds_avail_date > current_timestamp()
-				then 0
-			when t.txn_type_cd = 'DBT'
-				then t.amount * -1
-			else t.amount
+		when t.funds_avail_date > current_timestamp() then 0
+		when t.txn_type_cd = 'DBT' then t.amount * -1
+		else t.amount
 		end
     ), 
     sum(
 		case 
-			when t.txn_type_cd = 'DBT'
-				then t.amount * -1
-			else t.amount
+		when t.txn_type_cd = 'DBT' then t.amount * -1
+		else t.amount
 		end
     )
     from transaction t
@@ -84,22 +81,22 @@ where (a.avail_balance, a.pending_balance) != (
 -- 检查客户是否有支票账户和储蓄账户
 select c.cust_id, c.fed_id, c.cust_type_cd,
 	case 
-		when exists (
-			select 1
+	when exists (
+	    select 1
             from account a
             where a.cust_id = c.cust_id
-				and a.product_cd = 'CHK'
+	    and a.product_cd = 'CHK'
         ) then 'Y'
         else 'N'
 	end has_checking,
-    case
-		when exists (
-			select 1
+        case
+	when exists (
+	    select 1
             from account a
             where a.cust_id = c.cust_id
-				and a.product_cd = 'SAV'
-		) then 'Y'
-		else 'N'
+	    and a.product_cd = 'SAV'
+	) then 'Y'
+	else 'N'
 	end has_savings
 from customer c;
 
@@ -120,11 +117,11 @@ select 100/0;
 -- case避免计算结果
 select a.cust_id, a.product_cd, a.avail_balance / 
 	case
-		when prod_tots.tot_balance = 0 then 1
+	when prod_tots.tot_balance = 0 then 1
         else prod_tots.tot_balance
 	end percent_of_total
 from account a inner join (
-	select a.product_cd, sum(a.avail_balance) tot_balance
+    select a.product_cd, sum(a.avail_balance) tot_balance
     from account a
     group by a.product_cd
 ) prod_tots
