@@ -22,3 +22,12 @@
 
 - [x] [Chapter10.再谈连接](https://github.com/MMW1996/MYSQL/blob/master/SQL_Books/1.SQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/Notes/Chapter10.sql)
 
+- [x] [Chapter11.条件连接](https://github.com/MMW1996/MYSQL/blob/master/SQL_Books/1.SQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/Notes/Chapter11.sql)
+
+- [x] [Chapter12.事务](https://github.com/MMW1996/MYSQL/blob/master/SQL_Books/1.SQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/Notes/Chapter12.sql)
+
+- [x] [Chapter13.索引和约束](https://github.com/MMW1996/MYSQL/blob/master/SQL_Books/1.SQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/Notes/Chapter13.sql)
+
+- [x] [Chapter14.视图](https://github.com/MMW1996/MYSQL/blob/master/SQL_Books/1.SQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/Notes/Chapter14.sql)
+
+- [x] [Chapter15.元数据](https://github.com/MMW1996/MYSQL/blob/master/SQL_Books/1.SQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/Notes/Chapter15.sql)
